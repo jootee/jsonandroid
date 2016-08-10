@@ -1,0 +1,45 @@
+{
+    "AllUsers": [
+        {
+            "id": "1",
+            "first_name": "John",
+            "last_name": "Doe"
+        },
+        {
+            "id": "2",
+            "first_name": "Jane",
+            "last_name": "Doe"
+        },
+        {
+            "id": "3",
+            "first_name": "John",
+            "last_name": "Cena"
+        },
+        {
+            "id": "4",
+            "first_name": "Dwayne",
+            "last_name": "Johnson"
+        }
+    ]
+}
+
+Final Code
+here is the final code of above all small pieces..
+<?php
+
+ require_once 'dbconfig.php';
+ 
+ $query = "SELECT * FROM tbl_users";
+ 
+ $stmt = $DBcon->prepare($query);
+ $stmt->execute();
+ 
+ $userData = array();
+ 
+ while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+  
+  $userData['AllUsers'][] = $row;
+ }
+ 
+ echo json_encode($userData);
+?>
